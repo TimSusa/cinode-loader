@@ -13,7 +13,7 @@ export async function getUsers() {
             {
                 headers
             });
-        console.log('getUsers ', data);
+        return data;
     } catch (error) {
         throw new Error('Error getting users ', error)
     }
@@ -27,7 +27,7 @@ export async function getResumes() {
             {
                 headers
             });
-        console.log('getResumes ', JSON.stringify(data, null, 2));
+        return data;
     } catch (error) {
         throw new Error('Error getting resumes ', error)
     }
@@ -41,7 +41,7 @@ export async function getUserResume(userId = 161192, resumeId = 276675) {
             {
                 headers
             });
-        console.log('getUserResume ', JSON.stringify(data, null, 2));
+        return data;
     } catch (error) {
         throw new Error('Error getting user resume ', error)
     }
@@ -54,7 +54,7 @@ export async function getUserProfile(userId = 161192) {
             {
                 headers
             });
-        console.log('getUserProfile ', JSON.stringify(data, null, 2));
+        return data;
     } catch (error) {
         throw new Error('Error getting getUserProfile ', error)
     }
@@ -66,7 +66,7 @@ export async function getUserSkills(userId = 161192) {
             {
                 headers
             });
-        console.log('getUserSkills', JSON.stringify(data, null, 2));
+        return data;
     } catch (error) {
         throw new Error('Error getting getUserProfile ', error)
     }
