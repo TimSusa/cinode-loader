@@ -33,6 +33,22 @@ export async function getResumes() {
     }
 }
 
+export async function getResumesFlat() {
+    const allUserResumes = await getResumes();
+    return Promise.all(allUserResumes.map(async (user) => {
+        if (user) {
+            const { id, companyUserId } = user;
+            const resume = await getUserResume(companyUserId, id);
+            if (resume) {
+                return resume;
+            }
+        }
+    }
+    ));
+}
+
+
+//console.log(JSON.stringify(await getResumesFlat()), null, 2);
 
 
 export async function getUserResume(userId = 161192, resumeId = 276675) {
@@ -43,7 +59,7 @@ export async function getUserResume(userId = 161192, resumeId = 276675) {
             });
         return data;
     } catch (error) {
-        throw new Error('Error getting user resume ', error)
+        return null;
     }
 }
 
