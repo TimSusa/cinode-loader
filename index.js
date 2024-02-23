@@ -15,7 +15,7 @@ export async function getUsers() {
             });
         console.log('getUsers ', data);
     } catch (error) {
-        throw new Error('Error getting company candidates ', error)
+        throw new Error('Error getting users ', error)
     }
 }
 
@@ -29,7 +29,7 @@ export async function getResumes() {
             });
         console.log('getResumes ', JSON.stringify(data, null, 2));
     } catch (error) {
-        throw new Error('Error getting company candidates ', error)
+        throw new Error('Error getting resumes ', error)
     }
 }
 
@@ -43,9 +43,31 @@ export async function getUserResume(userId = 161192, resumeId = 276675) {
             });
         console.log('getUserResume ', JSON.stringify(data, null, 2));
     } catch (error) {
-        throw new Error('Error getting company candidates ', error)
+        throw new Error('Error getting user resume ', error)
     }
 }
 
 
-await getUserResume();
+export async function getUserProfile(userId = 161192) {
+    try {
+        const { data } = await axios.get(`${process.env.API_ENDPOINT}/companies/${process.env.COMPANY_ID}/users/${userId}/profile`,
+            {
+                headers
+            });
+        console.log('getUserProfile ', JSON.stringify(data, null, 2));
+    } catch (error) {
+        throw new Error('Error getting getUserProfile ', error)
+    }
+}
+
+export async function getUserSkills(userId = 161192) {
+    try {
+        const { data } = await axios.get(`${process.env.API_ENDPOINT}/companies/${process.env.COMPANY_ID}/users/${userId}/skills`,
+            {
+                headers
+            });
+        console.log('getUserSkills', JSON.stringify(data, null, 2));
+    } catch (error) {
+        throw new Error('Error getting getUserProfile ', error)
+    }
+}
