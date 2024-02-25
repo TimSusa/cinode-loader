@@ -3,16 +3,30 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.js",
+  "main": "./src/index.ts",
   "scripts": {
-    "start": "node --watch -r dotenv/config index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "bun --watch ./src/index.ts",
+    "start": "bun --run -r dotenv/config ./dist/index.js",
+    "start:dev": "bun --watch -r dotenv/config ./dist/index.js",
+    "build": "bun run build.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update-client": "bun download-open-api.mjs",
+    "create-types": "npx openapicmd typegen https://api.cinode.com/swagger/v0.1/swagger.yaml > src/openapi.d.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "tim.susa@teamit.fi",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.7",
-    "dotenv": "16.4.5"
+    "bun": "^1.0.29",
+    "bun-plugin-dts": "^0.2.1",
+    "cinode-open-api-client": "github:teamitfi/cinode-open-api-client",
+    "dotenv": "16.4.5",
+    "openapi-client-axios": "^7.5.4",
+    "typescript": "5.3.3"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/node": "^20.11.20"
   }
 }
